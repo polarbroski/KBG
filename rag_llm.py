@@ -1,4 +1,4 @@
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 
@@ -7,9 +7,12 @@ def generate_summary_from_docs(player_name, documents):
         "Given the following documents, generate a scouting summary for {name}:\n\n{docs}"
     )
 
-    prompt = prompt_template.format(name=player_name, docs='\n'.join(documents))
+    prompt = prompt_template.format(
+        name=player_name,
+        docs='\n'.join(documents)
+    )
 
-    # 모델명을 명시적으로 설정 (접근 가능한 모델명으로)
-    llm = ChatOpenAI(temperature=0.3, model="gpt-3.5-turbo-0125")  # 또는 "gpt-4", "gpt-4o"
+    # 최신 공개된 고성능 모델 gpt-4o 사용
+    llm = ChatOpenAI(model="gpt-4o", temperature=0.3)
 
     return llm.predict(prompt)
