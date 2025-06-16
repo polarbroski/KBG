@@ -6,3 +6,4 @@ faiss-cpu
 jinja2
 python-dotenv
 anthropic
+langchain-anthropic
