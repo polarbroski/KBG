@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from generate_report import generate_scouting_report
 from retriever import retrieve_documents
 from rag_llm import generate_summary_from_docs
+import os
 
 app = Flask(__name__)
 
@@ -32,8 +33,6 @@ def index():
 
     return render_template("index.html")
 
-import os
-
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))  # Render가 자동으로 포트 지정
+    port = int(os.environ.get("PORT", 10000))  # Render 배포 시 포트 지정
     app.run(host='0.0.0.0', port=port, debug=True)
