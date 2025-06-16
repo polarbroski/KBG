@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Scouting Report Generator</title></head>
+<body>
+    <h1>Player Scouting Report</h1>
+    <form method="POST">
+        <label>Name: <input type="text" name="name" required></label><br>
+        <label>Batting Avg: <input type="text" name="avg" required></label><br>
+        <label>Home Runs: <input type="number" name="hr" required></label><br>
+        <label>Run Time (sec): <input type="text" name="run_time" required></label><br>
+        <label>Left-Handed Hitter:
+            <select name="is_lhh">
+                <option value="True">Yes</option>
+                <option value="False">No</option>
+            </select>
+        </label><br>
+        <label>Pop Time (optional): <input type="text" name="pop_time"></label><br>
+        <button type="submit">Generate Report</button>
+    </form>
+</body>
+</html>
