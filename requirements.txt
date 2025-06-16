@@ -1,7 +1,7 @@
 flask
 langchain
 langchain-community
-langchain-anthropic
+anthropic==0.25.7
 faiss-cpu
 jinja2
 python-dotenv
