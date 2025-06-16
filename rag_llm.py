@@ -1,4 +1,4 @@
-from langchain_anthropic import ChatAnthropic
+from langchain_anthropic import ChatAnthropic  # ✅ 이게 핵심!
 from langchain.prompts import PromptTemplate
 
 def generate_summary_from_docs(player_name, documents):
@@ -11,9 +11,8 @@ def generate_summary_from_docs(player_name, documents):
         docs='\n'.join(documents)
     )
 
-    # ✅ langchain-anthropic에서 제공하는 ChatAnthropic 사용
     llm = ChatAnthropic(
-        model="claude-3-sonnet-20240229",
+        model="claude-3-sonnet-20240229",  # 또는 최신 버전 사용 가능
         temperature=0.3,
         max_tokens=1024
     )
