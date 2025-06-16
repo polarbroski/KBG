@@ -1,9 +1,7 @@
 flask
 langchain
 langchain-community
-openai
+langchain-anthropic
 faiss-cpu
 jinja2
 python-dotenv
-anthropic
-langchain-anthropic
