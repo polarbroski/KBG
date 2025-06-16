@@ -10,7 +10,7 @@ def generate_summary_from_docs(player_name, documents):
     prompt = prompt_template.format(name=player_name, docs='\n'.join(documents))
 
     llm = ChatAnthropic(
-        model="claude-3-sonnet-20240229",  # 또는 claude-3-opus-20240229
+        model="claude-sonnet-4-20250514",
         temperature=0.3,
         max_tokens=1024
     )
