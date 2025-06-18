@@ -1,36 +1,25 @@
+# app.py
 from flask import Flask, render_template, request
-from generate_report import generate_scouting_report
-from retriever import retrieve_documents
 from rag_llm import generate_summary_from_docs
+import os
 
 app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        name = request.form['name']
-        avg = float(request.form['avg'])
-        hr = int(request.form['hr'])
-        run_time = float(request.form['run_time'])
-        is_lhh = request.form['is_lhh'] == 'True'
-        pop_time = float(request.form['pop_time']) if request.form['pop_time'] else None
+        name = request.form["name"]
+        batting_avg = request.form["batting_avg"]
+        home_runs = request.form["home_runs"]
+        run_time = request.form["run_time"]
+        left_handed = request.form["left_handed"]
+        pop_time = request.form.get("pop_time", "")
 
-        player_info = {
-            'name': name,
-            'avg': avg,
-            'hr': hr,
-            'run_time': run_time,
-            'is_lhh': is_lhh,
-            'pop_time': pop_time
-        }
-
-        docs = retrieve_documents(name)
-        llm_summary = generate_summary_from_docs(name, docs)
-        report = generate_scouting_report(player_info)
-
-        return render_template("result.html", name=name, summary=llm_summary, report=report)
+        summary_filename = generate_summary_from_docs(name, [])
+        return render_template("result.html", report_img=summary_filename)
 
     return render_template("index.html")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
